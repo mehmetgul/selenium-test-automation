@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fluent Wait Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center; /* Center align text */
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #message {
+            visibility: hidden;
+            margin-top: 20px;
+            color: #333;
+            font-size: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function printWithRandomDelay() {
+            // Change button text
+            const button = document.querySelector('button');
+            button.innerText = "You Clicked Me, Wait!!!";
+
+            // Hide the message element
+            const messageElement = document.getElementById("message");
+            messageElement.style.visibility = "hidden";
+            messageElement.innerText = "";
+
+            // Record the start time
+            const startTime = new Date().getTime();
+
+            // Calculate random delay
+            const randomDelay = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
+
+            // Set new content after the delay and make it visible
+            setTimeout(() => {
+                const endTime = new Date().getTime();
+                const timeTaken = (endTime - startTime) / 1000; // Convert to seconds
+                messageElement.innerText = "Hello, I am fluent wait. It took " + timeTaken + " seconds to display this message.";
+                messageElement.style.visibility = "visible";
+                button.innerText = "Click me"; // Reset button text
+            }, randomDelay);
+        }
+    </script>
+</head>
+<body>
+<button id="btnClick" onclick="printWithRandomDelay()">Click me</button>
+<p id="message"></p>
+</body>
+</html>
